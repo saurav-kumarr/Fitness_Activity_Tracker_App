@@ -6,12 +6,13 @@ import com.fitness.userservice.dto.UserResponse;
 import com.fitness.userservice.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
@@ -21,7 +22,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserProfiles(userId));
     }
 
-    @PostMapping("/{register}")
+    @PostMapping("/register")
     public ResponseEntity<UserResponse> userRegister(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.ok(userService.userRegister(request));
     }
